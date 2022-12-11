@@ -12,7 +12,11 @@ const Campus = db.define("Campus", {
     type: Sequelize.STRING,
     allowNull: false
   },
-  lastName: {
+  address: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  description: {
     type: Sequelize.STRING,
     allowNull: false
   },
