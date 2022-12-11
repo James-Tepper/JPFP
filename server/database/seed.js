@@ -1,8 +1,7 @@
-const db = require('./db.js')
-const { Student, Campus } = require('./index.js')
+const { Student, Campus, db } = require('./index.js')
 
 const seed = async () => {
-  await db.sync({ force: true})
+  await db.sync({ force: true })
   await Student.create({ firstName: 'John', lastName: 'Doe' })
   await Student.create({ firstName: 'Jane', lastName: 'Don' })
   await Campus.create({ name: 'Fullstack', address: '1234 Main St', description: 'THE SCHOOL' })
@@ -12,4 +11,4 @@ const seed = async () => {
   db.close()
 }
 
-seed()
+module.exports = seed

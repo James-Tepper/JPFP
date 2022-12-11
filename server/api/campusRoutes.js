@@ -1,5 +1,5 @@
-import { Student, Campus } from "../database/index";
-import { app } from "express";
+const { Student, Campus } = require("../database/index");
+const app = require("express");
 
 const router = app.Router();
 
