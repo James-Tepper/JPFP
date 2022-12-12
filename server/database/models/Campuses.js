@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const db = require('/db.js')
+const db = require('../db.js')
 
 const Campus = db.define("Campus", {
   id: {
@@ -10,20 +10,24 @@ const Campus = db.define("Campus", {
   },
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    notEmpty: true,
+    unique: true,
   },
   address: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    notEmpty: true,
+    unique: true,
   },
   description: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.TEXT('long'),
   },
-  campusUrl: {
+  imageUrl: {
     type: Sequelize.STRING,
     defaultValue: "default-campus.jpg"
   }
 });
+
 
 module.exports = Campus

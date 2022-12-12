@@ -12,10 +12,15 @@ router.get('/students', async (req, res, next) => {
   }
 })
 
-
 // Tier 2
-router.get('/students/:id', (req, res) => {
-  res.send('Hello World!');
+router.get('/students/:id', async (req, res, next) => {
+  try {
+    const student = await Student.findByPk(req.params.id);
+    res.json(student);
+    
+  } catch (err) {
+    next(err);
+  }
 })
 
 

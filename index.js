@@ -18,4 +18,7 @@ const init = async () => {
   }
 }
 
+
+//seed databases
+
 init();
