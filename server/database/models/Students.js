@@ -2,12 +2,6 @@ const {Sequelize, DataTypes} = require('sequelize')
 const db = require('../db.js')
 
 const Student = db.define("student", {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
-  },
   firstName: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -21,7 +15,7 @@ const Student = db.define("student", {
   email: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+    unique: false,
     validate: {
       isEmail: true,
       notEmpty: true,
@@ -30,7 +24,6 @@ const Student = db.define("student", {
   imageUrl: {
     type: DataTypes.TEXT,
     defaultValue: "default-student.jpg",
-    allowNull: false,
   },
   gpa: {
     type: DataTypes.DECIMAL(2, 1),

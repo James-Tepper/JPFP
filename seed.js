@@ -1,5 +1,3 @@
-
-
 const {db, Student, Campus } = require('./server/database/index.js');
 
 const seed = async () => {
@@ -23,13 +21,13 @@ const seed = async () => {
   const students = [{
     firstName: "Jose",
     lastName: "Do",
-    email: "ghgfdhl@gmail.com",
+    email: "joseDo@do.com",
     gpa: 3.0,
   },
   {
-    firstName: "Jose",
-    lastName: "Do",
-    email: "ghgdfhmail2@gmail.com",
+    firstName: "Steven",
+    lastName: "Stevenson",
+    email: "steven@steven.org",
     gpa: 3.0,
   },
   {
@@ -41,6 +39,7 @@ const seed = async () => {
 
   try {
     await db.sync({force: true});
+    
     await Promise.all(campuses.map(campus => Campus.create(campus)));
     await Promise.all(students.map(student => Student.create(student)));
     
