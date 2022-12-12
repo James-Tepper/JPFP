@@ -1,30 +1,29 @@
-const Sequelize = require('sequelize')
+const {Sequelize, DataTypes} = require('sequelize')
 const db = require('../db.js')
 
-const Campus = db.define("Campus", {
+const Campus = db.define("campus", {
   id: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
   name: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
-    notEmpty: true,
-    unique: true,
+    validate: {notEmpty: true}
   },
   address: {
-    type: Sequelize.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
     notEmpty: true,
-    unique: true,
   },
   description: {
-    type: Sequelize.TEXT('long'),
+    type: DataTypes.TEXT,
+    allowNull: true,
   },
   imageUrl: {
-    type: Sequelize.STRING,
+    type: DataTypes.TEXT,
     defaultValue: "default-campus.jpg"
   }
 });

@@ -10,15 +10,12 @@ const init = async () => {
     app.listen(PORT, () => console.log(
       `
       Listening on port ${PORT}!
-      http://localhost:${PORT}
+      http://localhost:${PORT}/home
       `
     ))
   } catch (error) {
     console.error('There was an error starting up!', error);
   }
 }
-
-
-//seed databases
 
 init();

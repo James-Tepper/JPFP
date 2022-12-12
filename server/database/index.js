@@ -6,12 +6,9 @@ Student.belongsTo(Campus);
 Campus.hasMany(Student);
 
 db.sync({ force: true })
+  .then(() => {
+    console.log("Database synced!");
+  })
 
-const data = {
-  db,
-  Student,
-  Campus,
-};
-
-module.exports = data;
+module.exports = {db, Student, Campus}
 
