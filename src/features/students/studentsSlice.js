@@ -25,4 +25,4 @@ const StudentsSlice = createSlice({
 
 export const selectedStudents = (state) => state.students;
 
-export default CampusesSlice.reducer;
+export default StudentsSlice.reducer;
