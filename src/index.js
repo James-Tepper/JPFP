@@ -7,6 +7,8 @@ import { Main, Navbar } from "./components/index.js";
 /* Import and destructure main from src/component/index.js 
 and anything else you may need here */
 
+
+// ! TODO SWITCH OUT FAKE DATA WITH REAL DATA
 const fake_students = [
   {
     id: 2,
