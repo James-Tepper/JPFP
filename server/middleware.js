@@ -13,6 +13,9 @@ app.use(express.urlencoded({ extended: true }))
 // static middleware
 app.use(express.static(path.join(__dirname, '..','public')))
 
+// api routes for GET, POST, PUT, DELETE
+app.use('/api', require('./api'))
+
 // logging middleware
 app.use(cors())
 app.use(morgan('dev'))

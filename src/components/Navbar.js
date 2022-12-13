@@ -5,12 +5,13 @@ import React from "react";
 //write a basic navbar component
 const Navbar = () => {
   return (
-    <div className="navbar">
-      <h1>JPFP</h1>
+    <div id="navbar">
+      <h1 className="navbarTitle">JPFP</h1>
       <div className="directories">
         <a href="/home">Home</a>
         <a href="/campuses">Campuses</a>
         <a href="/students">Students</a>
+        <a href="/api">API</a>
       </div>
     </div>
   );

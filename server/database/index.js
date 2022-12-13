@@ -7,6 +7,5 @@ Campus.hasMany(Student);
 
 console.log("Database synced!");
 
-
 module.exports = {db, Student, Campus}
 

@@ -8,11 +8,13 @@ const Main = ({students , campuses}) => {
   const [selectedStudent, setSelectedStudent] = useState(students);
   
   const filterCampus = (event) => {
+    event.preventDefault();
     setSelectedCampus(event.target.value);
     window.location.href = event.target.value;
     };
     
   const filterStudent = (event) => {
+    event.preventDefault();
     setSelectedStudent(event.target.value);
     window.location.href = event.target.value;
     }; 
