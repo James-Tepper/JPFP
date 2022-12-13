@@ -3,7 +3,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchCampuses = createAsyncThunk("allCampuses", async () => {
+export const getCampuses = createAsyncThunk("allCampuses", async () => {
   try{
   const { data } = await axios.get(`/campuses`);
   return data;
@@ -17,10 +17,12 @@ const CampusesSlice = createSlice({
   initialState: [],
   reducers: {},
   extraReducers: {
-    [fetchCampuses.fulfilled]: (state, action) => {
+    [getCampuses.fulfilled]: (state, action) => {
       return action.payload;
     }
   }
 })
+
+export const selectedCampuses = (state) => state.campuses;
 
 export default CampusesSlice.reducer;

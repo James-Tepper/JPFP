@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectStudents } from "../features/students/studentsSlice.js";
 import { Link } from "react-router-dom";
+import { selectedStudents } from "../features/students/studentsSlice.js";
 
 const AllStudents = () => {
   const students = useSelector(selectStudents);

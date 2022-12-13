@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectCampuses } from "../features/campuses/campusesSlice.js";
 import { Link } from "react-router-dom";
+import { selectedCampuses } from "../features/campuses/campusesSlice.js";
 
 const AllCampuses = () => {
-  const campuses = useSelector(selectCampuses);
+  const campuses = useSelector(selectedCampuses);
   return (
     <div className="allCampuses">
       <h1>All Campuses</h1>
