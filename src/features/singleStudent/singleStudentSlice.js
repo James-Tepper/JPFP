@@ -19,7 +19,7 @@ const SingleStudentSlice = createSlice({
   reducers: {},
   extraReducers: {
     [fetchSingleStudentAsync.fulfilled]: (state, action) => {
-      return action.payload;
+      return state.concat(action.payload);
     }
   }
 });

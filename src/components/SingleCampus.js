@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { selectSingleCampus } from "../features/singleCampus/singleCampusSlice.js";
 
@@ -23,7 +24,7 @@ const SingleCampus = () => {
           <p>{campus.address}</p>
           <p>{campus.description}</p>
           <Link to={`/campuses/${campus.id}`}>
-            <button>Edit Campus</button>
+            <button>Campus</button>
           </Link>
         </>
       ) : (

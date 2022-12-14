@@ -10,23 +10,21 @@ const AllStudents = () => {
       <h1>All Students</h1>
       {students.length ? (
         students.map((student) => (
-          <Link
-            to={`/students/${student.id}`}
-            key={`All Students: ${student.id}`}
-          >
-            <div className="singleStudent">
-              <img src={student.imageUrl} />
-              <h3>
-                {student.firstName} {student.lastName}
-              </h3>
-              <h4>{student.email}</h4>
-              <h4>{student.gpa}</h4>
-            </div>
-          </Link>
+                <Link to={`/students/${student.id}`} key={student.id}>
+          <div className="singleStudent">
+                <h3>
+                  {student.fullName}
+                </h3>
+                <h4>{student.email}</h4>
+                <h4>{student.gpa}</h4>
+                <img src={student.imageUrl} />
+              </div>
+            </Link>
         ))
-      ) : (
+       ) : (
         <h1>No Students</h1>
-      )}
+      )
+    }
     </div>
   );
 };

@@ -1,5 +1,3 @@
-// ! TODO TEST THIS
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -18,7 +16,7 @@ const CampusesSlice = createSlice({
   reducers: {},
   extraReducers: {
     [fetchCampusesAsync.fulfilled]: (state, action) => {
-      return action.payload;
+      return state.concat(action.payload);
     },
   },
 });

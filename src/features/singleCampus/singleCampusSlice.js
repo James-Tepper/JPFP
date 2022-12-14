@@ -17,7 +17,7 @@ const SingleCampusSlice = createSlice({
   reducers: {},
   extraReducers: {
     [fetchSingleCampusAsync.fulfilled]: (state, action) => {
-      return action.payload;
+      return state.concat(action.payload);
     }
   }
 })

@@ -1,4 +1,4 @@
-const { Student, Campus } = require("../database/index");
+const { Student, Campus } = require("../database/index.js");
 const app = require("express");
 
 const router = app.Router();
@@ -23,5 +23,6 @@ router.get("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
 
 module.exports = router;

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -19,7 +20,6 @@ const SingleStudent = async () => {
   //   where: { id: campusId },
   // }));
   // const { name } = studentCampusId.info;
-  
 
   const dispatch = useDispatch();
 
@@ -36,9 +36,7 @@ const SingleStudent = async () => {
         <h1>GPA: {gpa}</h1>
       </div>
       <img src={`/${imageUrl}`} />
-      <Link to={`/campuses/${campusId}`}>
-        {`${fullName}'s Campus`}
-      </Link>
+      <Link to={`/campuses/${campusId}`}>{`${fullName}'s Campus`}</Link>
     </div>
   );
 };

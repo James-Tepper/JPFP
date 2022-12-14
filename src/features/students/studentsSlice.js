@@ -16,7 +16,7 @@ const StudentsSlice = createSlice({
   reducers: {},
   extraReducers: {
     [fetchStudentsAsync.fulfilled]: (state, action) => {
-      return action.payload;
+      return state.concat(action.payload);
     }
   }
 })
