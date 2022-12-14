@@ -1,6 +1,6 @@
 const app = require('./server/middleware');
 const db = require('./server/database/db');
-const PORT = 5000;
+const PORT = 3000;
 
 const init = async () => {
   try {

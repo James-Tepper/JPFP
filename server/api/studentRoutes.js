@@ -3,10 +3,7 @@ const app = require("express");
 
 const router = app.Router();
 
-// Campus Route Middleware
-router.use("/students");
-
-router.get("/", async (req, res, next) => {
+router.get("/students", async (req, res, next) => {
   try {
     const response = await Student.findAll();
     res.json(response);
@@ -15,7 +12,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/students:id", async (req, res, next) => {
   try {
     const response = await Student.findByPk(req.params.id);
     res.json(response);

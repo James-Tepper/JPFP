@@ -1,10 +1,24 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { selectedStudents } from "../features/students/studentsSlice.js";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const AllStudents = () => {
-  const students = useSelector(selectedStudents);
+  
+    const [students, setStudents] = useState([]);
+  
+    useEffect(() => {
+      axios.get("/api/students").then(
+        (response) => {
+          setStudents(response.data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    });
+    
+  
   return (
     <div className="allStudents">
       <h1>All Students</h1>

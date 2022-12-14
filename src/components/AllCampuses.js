@@ -1,18 +1,23 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import campusesSlice, { selectedCampuses } from "../features/campuses/campusesSlice.js";
+import campusesSlice from "../features/campuses/campusesSlice.js";
 import { fetchCampusesAsync } from "../features/campuses/campusesSlice.js";
 
 const AllCampuses = () => {
-  // Get all campuses
-  const campuses = useSelector(selectedCampuses);
-  const dispatch = useDispatch();
-  
+  const [campuses, setCampuses] = useState([]);
+
   useEffect(() => {
-    dispatch(fetchCampusesAsync());
-  }
-  , [dispatch]);
+    axios.get("/api/campuses").then(
+      (response) => {
+        setCampuses(response.data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  });
   
   return (
     <div className="allCampuses">
@@ -24,7 +29,7 @@ const AllCampuses = () => {
               <h2>{campus.name}</h2>
               <img src={campus.imageUrl} />
               <p>{campus.address}</p>
-              <p>{campus.description}</p> 
+              <p>{campus.description}</p>
             </div>
           </Link>
         ))
