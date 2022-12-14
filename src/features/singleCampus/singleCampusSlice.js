@@ -22,4 +22,7 @@ const SingleCampusSlice = createSlice({
   }
 })
 
+export const selectSingleCampus = (state) => state.singleCampus;
+
+
 export default SingleCampusSlice.reducer;

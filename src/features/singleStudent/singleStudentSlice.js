@@ -24,4 +24,6 @@ const SingleStudentSlice = createSlice({
   }
 });
 
+export const selectSingleStudent = (state) => state.singleStudent;
+
 export default SingleStudentSlice.reducer;

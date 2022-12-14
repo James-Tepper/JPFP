@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { selectedStudents } from "../features/students/studentsSlice.js";
 
 const AllStudents = () => {
-  const students = useSelector(selectStudents);
+  const students = useSelector(selectedStudents);
   return (
     <div className="allStudents">
       <h1>All Students</h1>

@@ -3,7 +3,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import campusesSlice from "../features/campuses/campusesSlice";
 import singleCampusSlice from "../features/singleCampus/singleCampusSlice";
 
-import allStudentsSlice from "../features/allStudents/allStudentsSlice";
+import studentsSlice from "../features/students/studentsSlice";
+
 import singleStudentSlice from "../features/singleStudent/singleStudentSlice";
 
 
@@ -11,7 +12,7 @@ const store = configureStore({
   reducer: {
     campuses: campusesSlice,
     singleCampus: singleCampusSlice,
-    allStudents: allStudentsSlice,
+    students: studentsSlice,
     singleStudent: singleStudentSlice
   }
 });
