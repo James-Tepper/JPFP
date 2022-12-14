@@ -10,26 +10,21 @@ const AllCampuses = () => {
       <h1>All Campuses</h1>
       {campuses.length ? (
         campuses.map((campus) => (
-          <Link
-            to={`/campuses/${campus.id}`}
-            key={`All Capuses: ${campus.id}`}
-          >
+          <Link to={`/campuses/${campus.id}`} key={campus.id}>
+            {campus.name}
             <div className="singleCampus">
-              <img src={campus.imageUrl} />
-              <h3>
-                {campus.name}
-              </h3>
+              <h3>{campus.name}</h3>
               <h4>{campus.address}</h4>
               <h4>{campus.description}</h4>
+              <img src={campus.imageUrl} />
             </div>
           </Link>
         ))
       ) : (
-        <h1>No Campuses</h1>
+        <h1>No campuses</h1>
       )}
     </div>
   );
 };
 
 export default AllCampuses;
-

@@ -10,7 +10,7 @@ const init = async () => {
     app.listen(PORT, () => console.log(
       `
       Listening on port ${PORT}!
-      http://localhost:${PORT}/home
+      http://localhost:${PORT}
       `
     ))
   } catch (error) {

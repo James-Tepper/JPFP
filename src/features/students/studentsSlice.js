@@ -1,9 +1,7 @@
-// ! TODO TEST THIS
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getStudents = createAsyncThunk("allStudents", async () => {
+export const fetchStudentsAsync = createAsyncThunk("allStudents", async () => {
   try{
   const { data } = await axios.get(`/students`);
   return data;
@@ -17,7 +15,7 @@ const StudentsSlice = createSlice({
   initialState: [],
   reducers: {},
   extraReducers: {
-    [getStudents.fulfilled]: (state, action) => {
+    [fetchStudentsAsync.fulfilled]: (state, action) => {
       return action.payload;
     }
   }

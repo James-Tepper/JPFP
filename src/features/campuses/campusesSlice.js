@@ -3,10 +3,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getCampuses = createAsyncThunk("allCampuses", async () => {
-  try{
-  const { data } = await axios.get(`/campuses`);
-  return data;
+export const fetchCampusesAsync = createAsyncThunk("allCampuses", async () => {
+  try {
+    const { data } = await axios.get(`/campuses`);
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -17,11 +17,11 @@ const CampusesSlice = createSlice({
   initialState: [],
   reducers: {},
   extraReducers: {
-    [getCampuses.fulfilled]: (state, action) => {
+    [fetchCampusesAsync.fulfilled]: (state, action) => {
       return action.payload;
-    }
-  }
-})
+    },
+  },
+});
 
 export const selectedCampuses = (state) => state.campuses;
 

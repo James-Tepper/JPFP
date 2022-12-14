@@ -32,6 +32,12 @@ const Student = db.define("student", {
       max: 4.0,
     },
   },
+  fullName: {
+    type: DataTypes.VIRTUAL,
+    get() {
+      return `${this.firstName} ${this.lastName}`;
+    }
+  }
 })
 
 

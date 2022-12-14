@@ -13,6 +13,7 @@ const Navbar = () => {
         <a href="/students">Students</a>
         <a href="/api">API</a>
       </div>
+      {/* <div addACampus> */}
     </div>
   );
 };

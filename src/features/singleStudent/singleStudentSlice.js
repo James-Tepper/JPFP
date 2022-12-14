@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchSingleStudent = createAsyncThunk(
+export const fetchSingleStudentAsync = createAsyncThunk(
   "singleStudent",
   async (id) => {
     try {
@@ -18,7 +18,7 @@ const SingleStudentSlice = createSlice({
   initialState: {},
   reducers: {},
   extraReducers: {
-    [fetchSingleStudent.fulfilled]: (state, action) => {
+    [fetchSingleStudentAsync.fulfilled]: (state, action) => {
       return action.payload;
     }
   }
