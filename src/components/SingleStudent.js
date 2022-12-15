@@ -1,42 +1,41 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import {
-  fetchSingleStudentAsync,
-  selectSingleStudent,
-} from "../features/singleStudent/singleStudentSlice.js";
+import { Link , Outlet } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
 
-// import { Campus } from "../../server/database/index.js";
-
-const SingleStudent = async () => {
-  // Get student information
+const SingleStudent = () => {
+  
   const { studentId } = useParams();
-  const student = useSelector(selectSingleStudent);
-  const { id, email, imageUrl, gpa, fullName, campusId } = student.info;
-
-  // Get campus id
-  // const studentCampusId = await axios.get(Campus.findOne({
-  //   where: { id: campusId },
-  // }));
-  // const { name } = studentCampusId.info;
-
-  const dispatch = useDispatch();
+  console.log("STUDENTID", studentId)
+  
+  const [student, setStudent] = useState({});
+  const [campus, setCampus] = useState({});
 
   useEffect(() => {
-    dispatch(fetchSingleStudentAsync(studentId));
-  }, [dispatch]);
+    axios.get(`/api/students/${studentId}`).then(studentResponse => {
+      setStudent(studentResponse.data);
+    });
+    axios.get(`/api/campuses/${student.campusId}`).then(campusResponse => {
+      setCampus(campusResponse.data);
+    });
+  }, [studentId]);
+
+  if (!student) {
+    return <p>Loading...</p>;
+  }
 
   return (
-    <div id="singleStudent">
-      <h1>Student: {id}</h1>
+    <div id="selectedSingleStudent">
+      <h1>Student ID: {student.id}</h1>
       <div className="singleStudent">
-        <h1>{fullName}</h1>
-        <h1>{email}</h1>
-        <h1>GPA: {gpa}</h1>
+        <h1>Name: {student.fullName}</h1>
+        <h1>Email: {student.email}</h1>
+        <h1>GPA: {student.gpa}</h1>
       </div>
-      <img src={`/${imageUrl}`} />
-      <Link to={`/campuses/${campusId}`}>{`${fullName}'s Campus`}</Link>
+      <img src={`/${student.imageUrl}`} />
+      <Link to={`/campuses/${student.campusId}`}>{`${student.fullName}'s Campus`}</Link>
+      <Outlet />
     </div>
   );
 };

@@ -1,19 +1,24 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { selectSingleCampus } from "../features/singleCampus/singleCampusSlice.js";
-
-import fetchSingleCampusAsync from "../features/singleCampus/singleCampusSlice.js";
+import axios from "axios";
 
 const SingleCampus = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const campus = useSelector(selectSingleCampus);
+  const { campusId } = useParams();
+  
+  const [student, setStudent] = useState({});
+  const [campus, setCampus] = useState({});
 
   useEffect(() => {
-    dispatch(fetchSingleCampusAsync(id));
-  }, [dispatch]);
+    axios.get(`/api/campuses/${campusId}`).then(campusResponse => {
+      setCampus(campusResponse.data);
+      console.log("CAMPUS 1", campusResponse.data)
+    });
+  }, [campusId]);
+
+  if (!campus) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div id="singleCampus">

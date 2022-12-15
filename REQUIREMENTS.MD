@@ -8,9 +8,9 @@
 
   <details>
 
-- [ ] Write a component to display a list of all campuses (at least their names and images)
+- [x] Write a component to display a list of all campuses (at least their names and images)
 - [ ] Write a campuses sub-reducer to manage campuses in your Redux store
-- [ ] Display the all-campuses component when the url matches `/campuses`
+- [x] Display the all-campuses component when the url matches `/campuses`
 
   </details>
 
@@ -18,9 +18,9 @@
 
   <details>
 
-- [ ] Write a component to display a list of all students (at least their names)
+- [x] Write a component to display a list of all students (at least their names)
 - [ ] Write a students sub-reducer to manage students in your Redux store
-- [ ] Display the all-students component when the url matches `/students`
+- [x] Display the all-students component when the url matches `/students`
 
   </details>
 
@@ -28,7 +28,7 @@
 
   <details>
 
-- [ ] Add a links to the navbar that can be used to navigate to the all-campuses view and the all-students view
+- [x] Add a links to the navbar that can be used to navigate to the all-campuses view and the all-students view
 
   </details>
 
@@ -38,7 +38,7 @@
 
   <details>
 
-- [ ] Write a function which sync's and seeds your database when your application starts
+- [x] Write a function which sync's and seeds your database when your application starts
 
   </details>
 
@@ -46,7 +46,7 @@
 
   <details>
   
-  - [ ] Write a route to serve up all campuses
+  - [x] Write a route to serve up all campuses
 
 - Write a `campuses` model with the following information:
   - [x] name - not empty or null
@@ -60,7 +60,7 @@
 
   <details>
   
-  - [ ] Write a route to serve up all students
+  - [x] Write a route to serve up all students
 
 - Write a `students` model with the following information:
 

@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 const AllStudents = () => {
   const [students, setStudents] = useState([]);
   const [campuses, setCampuses] = useState([]);
-  const dispatch = useDispatch();
+  
+  useDispatch();
   
   useEffect(() => {
     axios.get("/api/students").then(studentsResponse => {
@@ -29,39 +30,22 @@ const AllStudents = () => {
         students.map(student => (
           <div className="singleStudent" key={student.id}>
             <Link to={`/students/${student.id}`}>
-              <h3>{student.fullName}</h3>
+              <h3>Student: {student.fullName}</h3>
             </Link>
-            <h4>
-              {campuses.find(campus => campus.id === student.campusId)?.name}
-            </h4>
-            <h4>{student.email}</h4>
-            <h4>{student.gpa}</h4>
+            <Link to={`/campuses/${student.campusId}`}>
+            <h4>School: {campuses.find(campus => campus.id === student.campusId)?.name}</h4>
+            </Link>
+            <h4>Email: {student.email}</h4>
             <img src={student.imageUrl} />
+            <h4>GPA: {student.gpa}</h4>
           </div>
         ))
       ) : (
-        <h1>No Students</h1>
+        <h3>No Students</h3>
       )}
     </div>
   );
 };
-    // useEffect(() => {
-    //   axios.get("/api/students").then(
-    //     (studentsResponse) => {
-    //       setStudents(studentsResponse.data) 
-    //       for (let student in studentsResponse.data) {
-    //         axios.get(`/api/campuses/${student.campusId}`).then(
-    //           (campusResponse) => {
-    //             setCampuses(campusResponse.data.name)
-    //             console.log(campus)
-    //           }
-    //         )
-    //       }
-    //     }
-    //   )
-    // }, )
-
-
-
 
 export default AllStudents;
+

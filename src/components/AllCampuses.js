@@ -1,9 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import campusesSlice from "../features/campuses/campusesSlice.js";
-import { fetchCampusesAsync } from "../features/campuses/campusesSlice.js";
 
 const AllCampuses = () => {
   const [campuses, setCampuses] = useState([]);
@@ -18,20 +15,21 @@ const AllCampuses = () => {
       }
     );
   });
-  
+
   return (
     <div className="allCampuses">
       <h1>All Campuses</h1>
       {campuses.length ? (
         campuses.map((campus) => (
-          <Link to={`/campuses/${campus.id}`} key={campus.id}>
-            <div className="singleCampus">
-              <h2>{campus.name}</h2>
-              <img src={campus.imageUrl} />
-              <p>{campus.address}</p>
-              <p>{campus.description}</p>
-            </div>
-          </Link>
+          // eslint-disable-next-line react/jsx-key
+          <div className="singleCampus">
+            <Link to={`/campuses/${campus.id}`} key={campus.id}>
+              <h2>Campus: {campus.name}</h2>
+            </Link>
+            <img src={campus.imageUrl} />
+            <p>Address: {campus.address}</p>
+            <p>About Us:{campus.description}</p>
+          </div>
         ))
       ) : (
         <h1>No Campuses</h1>

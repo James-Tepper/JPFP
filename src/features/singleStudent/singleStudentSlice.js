@@ -5,7 +5,7 @@ export const fetchSingleStudentAsync = createAsyncThunk(
   "singleStudent",
   async (id) => {
     try {
-      const { data } = await axios.get(`/students/${id}`);
+      const { data } = await axios.get(`/api/students/${id}`);
       return data;
     } catch (err) {
       console.log(err);

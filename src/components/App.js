@@ -39,10 +39,10 @@ const App = () => {
       <Routes>
         {/* maybe make a "/" (home path) */}
         <Route path="/campuses" element={<AllCampuses />} />
-        <Route path="/campuses/:campusId" element={<SingleCampus />} />
+        <Route path="/campuses/:campusId" element={<SingleCampus/>} />
         <Route path="/students" element={<AllStudents />} />
         <Route path="/students/:studentId" element={<SingleStudent />} />
-        <Route path="*">404: Not Found</Route>
+        <Route path="">404: Not Found</Route>
       </Routes>
     </div>
   );

@@ -6,7 +6,6 @@ let fakeFirstName = faker.name.firstName();
 let fakeLastName = faker.name.lastName();
 let fakeEmail = faker.internet.email();
 let fakeGpa = faker.datatype.float({ min: 0.0, max: 4.0 });
-let fakeImageUrl = faker.image.avatar();
 
 // fake campus information
 let fakeCampusName = faker.company.companyName();
@@ -40,7 +39,6 @@ const seed = async () => {
       fakeFirstName = faker.name.firstName();
       fakeLastName = faker.name.lastName();
       fakeEmail = faker.internet.email();
-      fakeImageUrl = faker.image.avatar();
       fakeGpa = faker.datatype.number({ min: 0.0, max: 4.0, precision: 0.1 });
 
       //create student
@@ -48,7 +46,6 @@ const seed = async () => {
         firstName: fakeFirstName,
         lastName: fakeLastName,
         email: fakeEmail,
-        imageUrl: fakeImageUrl,
         gpa: fakeGpa,
         campusId: Math.floor(Math.random() * [campusCount]) + 1,
       });
