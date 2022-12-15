@@ -7,7 +7,6 @@ import { useState } from "react";
 const SingleStudent = () => {
   
   const { studentId } = useParams();
-  console.log("STUDENTID", studentId)
   
   const [student, setStudent] = useState({});
   const [campus, setCampus] = useState({});
@@ -26,7 +25,7 @@ const SingleStudent = () => {
   }
 
   return (
-    <div id="selectedSingleStudent">
+    <div id="singleStudent">
       <h1>Student ID: {student.id}</h1>
       <div className="singleStudent">
         <h1>Name: {student.fullName}</h1>
