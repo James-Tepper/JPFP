@@ -38,32 +38,39 @@ body{
 }
 
 img {
-  width: 10vh;
+  width: 10vw;
+  height: 10vh;
+}
+
+.allStudents, .allCampuses{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  text-decoration: none;
+}
+
+.singleStudent, .singleCampus{
+  text-decoration: none;
+  width: 30vw;
+  background: #fff;
+  margin-bottom: 25px;
+  padding: 25px;
+  border-radius: 2px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+
+#singleCampusPage{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+}
+#singleStudentPage img, #singleCampusPage img{
+  width: 10vw;
   height: 10vh;
   border-radius: 50%;
 }
 
 
-
-.singleStudent, 
-.singleCampus{
-  text-decoration: none;
-  width: 100%;
-  background: #fff;
-  margin-bottom: 25px;
-  padding: 25px;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
-
-#singleStudent{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#singleCampus{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}

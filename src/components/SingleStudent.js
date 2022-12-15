@@ -25,7 +25,7 @@ const SingleStudent = () => {
   }
 
   return (
-    <div id="singleStudent">
+    <div id="singleStudentPage">
       <h1>Student ID: {student.id}</h1>
       <div className="singleStudent">
         <h1>Name: {student.fullName}</h1>

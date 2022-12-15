@@ -24,8 +24,9 @@ const AllStudents = () => {
   }, []);
 
   return (
-    <div className="allStudents">
+    <div>
       <h1>All Students</h1>
+    <div className="allStudents">
       {students.length ? (
         students.map(student => (
           <div className="singleStudent" key={student.id}>
@@ -43,6 +44,7 @@ const AllStudents = () => {
       ) : (
         <h3>No Students</h3>
       )}
+    </div>
     </div>
   );
 };
