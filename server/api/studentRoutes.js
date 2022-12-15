@@ -12,7 +12,7 @@ router.get("/students", async (req, res, next) => {
   }
 });
 
-router.get("/students:id", async (req, res, next) => {
+router.get("/students/:id", async (req, res, next) => {
   try {
     const response = await Student.findByPk(req.params.id);
     res.json(response);
@@ -20,6 +20,5 @@ router.get("/students:id", async (req, res, next) => {
     next(err);
   }
 });
-
 
 module.exports = router;
