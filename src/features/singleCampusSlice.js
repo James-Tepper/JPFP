@@ -48,13 +48,13 @@ const SingleCampusSlice = createSlice({
   reducers: {},
   extraReducers: {
     [fetchSingleCampusAsync.fulfilled]: (state, action) => {
-      return state.concat(action.payload);
+      return action.payload;
     },
     [removeCampusAsync.fulfilled]: (state, action) => {
       return state.filter((campus) => campus.id !== action.payload.id);
     },
     [addCampusAsync.fulfilled]: (state, action) => {
-      return state.concat(action.payload);
+      return action.payload;
     },
   },
 });

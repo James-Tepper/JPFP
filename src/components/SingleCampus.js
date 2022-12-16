@@ -1,50 +1,53 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { selectedStudents } from "../features/studentsSlice";
+import { fetchSingleCampusAsync } from "../features/singleCampusSlice";
+import { selectSingleCampus } from "../features/singleCampusSlice";
 
 const SingleCampus = () => {
+  
+  const [shown, setShown] = useState(false);
+  
+  const dispatch = useDispatch();
   const { campusId } = useParams();
-  const [campus, setCampus] = useState({});
-  const [students, setStudents] = useState([]);
-
+  
+  const students = useSelector(selectedStudents);
+  const campus = useSelector(selectSingleCampus);
+  const { name, description, imageUrl, address } = campus;
+  
   useEffect(() => {
-    axios.get(`/api/campuses/${campusId}`).then((campusResponse) => {
-      setCampus(campusResponse.data);
-    }),
-      axios.get("/api/students").then(
-        (response) => {
-          setStudents(response.data);
-          console.log(response.data);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-  }, []);
-
-  if (!campus) {
-    return <p>Loading...</p>;
-  }
+    dispatch(fetchSingleCampusAsync(campusId));
+  }, [dispatch]);
+  
+  const handleClick = () => {
+    setShown((current) => !current);
+  };
 
   return (
-      <div id="singleCampusPage">
-        <h1>{campus.name}</h1>
-        <img className="singleCampusPhoto" src={`/${campus.imageUrl}`} />
-        <p>{campus.address}</p>
-        <p>{campus.description}</p>
-        <p>
-          Number of students:
-          {
-            students.filter((student) => {
-              return student.campusId == campus.id;
-            }).length
-          }
-        </p>
-        <Link to={`/campuses/${campus.id}`}>
-          <button>Campus</button>
-        </Link>
+    <>
+      <div id="container">
+        <h1>Single Campus</h1>
+        <div className="singleCampus">
+          <h2>Campus: {name}</h2>
+          <img src={imageUrl} />
+          <p>Address: {address}</p>
+          <p>About Us:{description}</p>
+          <p>
+            Number of students:
+            {
+              students.filter((student) => {
+                return student.campusId == campus.id;
+              }).length
+            }
+          </p>
+          <Link to={`/campuses/${campus.id}/edit`}>
+            <button className="editButton">Edit Campus</button>
+          </Link>
+        </div>
       </div>
+    </>
   );
 };
 

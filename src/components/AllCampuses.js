@@ -19,20 +19,13 @@ const AllCampuses = () => {
   const students = useSelector(selectedStudents);
 
   useEffect(() => {
-    console.log("STUDENTS 1", students)
     dispatch(fetchCampusesAsync());
     dispatch(fetchStudentsAsync());
-    console.log("STUDENTS 2", students)
-    
   }, [dispatch]);
 
   const handleRemove = (id) => {
     dispatch(removeCampusAsync(id));
   };
-
-  if (!campuses) {
-    return <h1>Loading...</h1>;
-  }
 
   return (
     <>

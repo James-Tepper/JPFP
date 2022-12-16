@@ -18,6 +18,7 @@ const AddStudent = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(addStudentAsync({ firstName, lastName, email, gpa, campusId }));
+
     setFirstName("");
     setLastName("");
     setEmail("");

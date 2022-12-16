@@ -3,13 +3,11 @@ const path = require('path')
 const cors = require('cors')
 const volleyball = require('volleyball')
 const morgan = require('morgan')
-const router = require('./api/index.js')
 const app = express()
 
 
 // api routes
-app.use('/api', router.campusRoutes)
-app.use('/api', router.studentRoutes)
+app.use('/api', require('./api/index.js'))
 
 
 // body parsing middleware

@@ -1,8 +1,7 @@
-const campusRoutes = require('./campusRoutes.js')
-const studentRoutes = require('./studentRoutes.js')
+const router = require('express').Router()
 
-module.exports = {
-  campusRoutes,
-  studentRoutes
-}
+router.use('/campuses', require('./campusRoutes.js'))
+router.use('/students', require('./studentRoutes.js'))
+
+module.exports = router
 

@@ -1,41 +1,48 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Link , Outlet } from "react-router-dom";
-import axios from "axios";
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import { fetchSingleStudentAsync } from "../features/singleStudentSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSingleStudent } from "../features/singleStudentSlice";
+import { selectSingleCampus } from "../features/singleCampusSlice";
+import { selectedCampuses } from "../features/campusesSlice";
 
 const SingleStudent = () => {
-  
+  const [shown, setShown] = useState(false);
+
+  const dispatch = useDispatch();
   const { studentId } = useParams();
-  
-  const [student, setStudent] = useState({});
-  const [campus, setCampus] = useState({});
+
+  console.log(studentId);
+
+  const campus = useSelector(selectedCampuses);
+  const student = useSelector(selectSingleStudent);
+  const { fullName, id, email, gpa, imageUrl, campusId } = student;
 
   useEffect(() => {
-    axios.get(`/api/students/${studentId}`).then(studentResponse => {
-      setStudent(studentResponse.data);
-    });
-    axios.get(`/api/campuses/${student.campusId}`).then(campusResponse => {
-      setCampus(campusResponse.data);
-    });
-  }, [studentId]);
+    dispatch(fetchSingleStudentAsync(studentId));
+  }, [dispatch]);
 
-  if (!student) {
-    return <p>Loading...</p>;
-  }
+  const handleClick = () => {
+    setShown((current) => !current);
+  };
 
   return (
-    <div id="singleStudentPage">
-      <h1>Student ID: {student.id}</h1>
-      <div className="singleStudent">
-        <h1>Name: {student.fullName}</h1>
-        <h1>Email: {student.email}</h1>
-        <h1>GPA: {student.gpa}</h1>
+    <>
+      <div id="container">
+        <div id="singleStudentPage">
+          <h1>Student ID: {id}</h1>
+          <div className="singleStudent">
+            <h1>Name: {fullName}</h1>
+            <h1>Email: {email}</h1>
+            <h1>GPA: {gpa}</h1>
+          </div>
+          <img src={`/${imageUrl}`} />
+          <Link to={`/campuses/${campusId}`}>{`${fullName}'s Campus`}</Link>
+        </div>
       </div>
-      <img src={`/${student.imageUrl}`} />
-      <Link to={`/campuses/${student.campusId}`}>{`${student.fullName}'s Campus`}</Link>
-      <Outlet />
-    </div>
+    </>
   );
 };
 

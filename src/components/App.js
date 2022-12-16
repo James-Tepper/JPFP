@@ -35,7 +35,7 @@ const App = () => {
         <Route path="/students" element={<AllStudents />} />
         <Route path="/students/:studentId" element={<SingleStudent />} />
         <Route path="/students/add" element={<AddStudent />} />
-
+        
         <Route path="/campuses/add" element={<AddCampus />} />
 
         <Route path="*">404: Not Found</Route>

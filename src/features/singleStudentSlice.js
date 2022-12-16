@@ -30,7 +30,7 @@ export const addStudentAsync = createAsyncThunk(
   "singleStudent",
   async ({ firstName, lastName, email, gpa, campusId }) => {
     try {
-      const { data } = await axios.post(`/api/students/add`, {
+      const { data } = await axios.post(`/api/students`, {
         firstName,
         lastName,
         email,
@@ -52,11 +52,14 @@ const SingleStudentSlice = createSlice({
   reducers: {},
   extraReducers: {
     [fetchSingleStudentAsync.fulfilled]: (state, action) => {
-      return state.concat(action.payload);
+      return action.payload;
     },
     [removeStudentAsync.fulfilled]: (state, action) => {
-      return state.filter((student) => student.id !== action.payload);
+      return state.filter(student => student.id !== action.payload.id);
     },
+    [addStudentAsync.fulfilled]: (state, action) => {
+      return action.payload;
+    }
   }
 });
 

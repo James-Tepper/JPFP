@@ -4,7 +4,7 @@ const app = require("express");
 const router = app.Router();
 
 
-router.get("/campuses", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const response = await Campus.findAll();
     res.json(response);
@@ -14,7 +14,7 @@ router.get("/campuses", async (req, res, next) => {
 });
 
 
-router.get("/campuses/:id", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const response = await Campus.findByPk(req.params.id);
     res.json(response);
@@ -24,7 +24,7 @@ router.get("/campuses/:id", async (req, res, next) => {
 });
 
 
-router.delete("/campuses/:id", async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const response = await Campus.destroy({
       where: {
@@ -38,7 +38,7 @@ router.delete("/campuses/:id", async (req, res, next) => {
   }
   })
   
-  router.post("/campuses/add", async (req, res, next) => {
+  router.post("/", async (req, res, next) => {
     try {
       const response = await Campus.create(req.body);
       res.json(response);
