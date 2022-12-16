@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
-import { fetchCampusesAsync } from "../features/campuses/campusesSlice.js";
-import { fetchStudentsAsync } from "../features/students/studentsSlice.js";
+import { fetchCampusesAsync } from "../features/campusesSlice.js";
+import { fetchStudentsAsync } from "../features/studentsSlice.js";
 
 import {
   Navbar,
@@ -11,22 +11,14 @@ import {
   SingleCampus,
   AllStudents,
   SingleStudent,
+  // EditStudents,
+  // EditCampuses,
+  AddCampus,
+  AddStudent,
 } from "./index.js";
 
-// import { getCampuses } from "../features/campuses/campusesSlice.js";
-// import { getStudents } from "../features/students/studentsSlice.js";
-// import selectSingleCampus from "../features/singleCampus/singleCampusSlice.js";
-// import selectSingleStudent from "../features/singleStudent/singleStudentSlice.js";
-
 const App = () => {
-  
   const dispatch = useDispatch();
-
-  // const selectedCampus = useSelector(selectSingleCampus);
-  // const selectedStudent = useSelector(selectSingleStudent);
-
-  // const campuses = useSelector(getCampuses);
-  // const students = useSelector(getStudents);
 
   useEffect(() => {
     dispatch(fetchCampusesAsync());
@@ -37,12 +29,16 @@ const App = () => {
     <div id="main">
       <Navbar />
       <Routes>
-        {/* maybe make a "/" (home path) */}
+        <Route path="/" element={<h1>HOME PAGE</h1>} />
         <Route path="/campuses" element={<AllCampuses />} />
-        <Route path="/campuses/:campusId" element={<SingleCampus/>} />
+        <Route path="/campuses/:campusId" element={<SingleCampus />} />
         <Route path="/students" element={<AllStudents />} />
         <Route path="/students/:studentId" element={<SingleStudent />} />
-        <Route path="">404: Not Found</Route>
+        <Route path="/students/add" element={<AddStudent />} />
+
+        <Route path="/campuses/add" element={<AddCampus />} />
+
+        <Route path="*">404: Not Found</Route>
       </Routes>
     </div>
   );

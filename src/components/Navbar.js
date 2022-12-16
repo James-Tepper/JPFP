@@ -8,10 +8,11 @@ const Navbar = () => {
     <div id="navbar">
       <h1 className="navbarTitle">JPFP</h1>
       <div className="directories">
-        <a href="/home">Home</a>
+        <a href="/">Home</a>
         <a href="/campuses">Campuses</a>
+        <a href="/campuses/add">Edit Campuses</a>
         <a href="/students">Students</a>
-        <a href="/api">API</a>
+        <a href="/students/add">Edit Students</a>
       </div>
     </div>
   );

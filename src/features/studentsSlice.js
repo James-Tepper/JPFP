@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchStudentsAsync = createAsyncThunk("allStudents", async () => {
   try{
-  const { data } = await axios.get(`/students`);
+  const { data } = await axios.get(`/api/students`);
   return data;
   } catch (error) {
     console.log(error);
@@ -16,7 +16,7 @@ const StudentsSlice = createSlice({
   reducers: {},
   extraReducers: {
     [fetchStudentsAsync.fulfilled]: (state, action) => {
-      return state.concat(action.payload);
+      return action.payload;
     }
   }
 })

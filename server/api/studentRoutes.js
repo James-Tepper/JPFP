@@ -21,4 +21,29 @@ router.get("/students/:id", async (req, res, next) => {
   }
 });
 
+router.delete("/students/:id", async (req, res, next) => {
+  try {
+    const response = await Student.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+    res.json(response);
+    
+  } catch (err) {
+    next(err);
+  }
+  })
+  
+
+router.post("/students/add", async (req, res, next) => {
+  try {
+    const response = await Student.create(req.body);
+    res.json(response);
+  } catch (err) {
+    next(err);
+  }
+});
+    
+    
 module.exports = router;
