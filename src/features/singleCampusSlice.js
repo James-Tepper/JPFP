@@ -9,6 +9,24 @@ export const fetchSingleCampusAsync = createAsyncThunk(
       return data;
     } catch (err) {
       console.log(err);
+      throw err;
+    }
+  }
+);
+
+export const editSingleCampusAsync = createAsyncThunk(
+  "singleCampus",
+  async (id , name, description, address) => {
+    try {
+      const { data } = await axios.put(`/api/campuses/${id}`, {
+        name,
+        description,
+        address,
+      });
+      return data;
+    } catch (err) {
+      console.log(err);
+      throw err;
     }
   }
 );
@@ -21,6 +39,7 @@ export const removeCampusAsync = createAsyncThunk(
       return data;
     } catch (err) {
       console.log(err);
+      throw err;
     }
   }
 );
@@ -38,6 +57,7 @@ export const addCampusAsync = createAsyncThunk(
       return data;
     } catch (err) {
       console.log(err);
+      throw err;
     }
   }
 );

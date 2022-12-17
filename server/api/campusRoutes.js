@@ -3,7 +3,7 @@ const app = require("express");
 
 const router = app.Router();
 
-
+//get all campuses
 router.get("/", async (req, res, next) => {
   try {
     const response = await Campus.findAll();
@@ -13,7 +13,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-
+//get single campus
 router.get("/:id", async (req, res, next) => {
   try {
     const response = await Campus.findByPk(req.params.id);
@@ -23,7 +23,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-
+//delete campus
 router.delete("/:id", async (req, res, next) => {
   try {
     const response = await Campus.destroy({
@@ -38,6 +38,21 @@ router.delete("/:id", async (req, res, next) => {
   }
   })
   
+//edit campus
+  router.put("/:id", async (req, res, next) => {
+    try {
+      const response = await Campus.update(req.body, {
+        where: {
+          id: req.params.id
+        }
+      });
+      res.json(response);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+//add campus
   router.post("/", async (req, res, next) => {
     try {
       const response = await Campus.create(req.body);
@@ -46,5 +61,7 @@ router.delete("/:id", async (req, res, next) => {
       next(err);
     }
   });
+  
+  
 
 module.exports = router;
