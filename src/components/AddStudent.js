@@ -15,10 +15,10 @@ const AddStudent = () => {
   const [gpa, setGpa] = useState("");
   const [campusId, setCampusId] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     dispatch(addStudentAsync({ firstName, lastName, email, gpa, campusId }));
-
+    
     setFirstName("");
     setLastName("");
     setEmail("");

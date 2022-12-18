@@ -38,6 +38,7 @@ router.delete("/:id", async (req, res, next) => {
   
 
 router.post("/", async (req, res, next) => {
+  console.log(req.body);
   try {
     const response = await Student.create(req.body);
     res.json(response);

@@ -16,12 +16,13 @@ export const fetchSingleCampusAsync = createAsyncThunk(
 
 export const editSingleCampusAsync = createAsyncThunk(
   "singleCampus",
-  async (id , name, description, address) => {
+  async ({ id, name, address, description }) => {
     try {
       const { data } = await axios.put(`/api/campuses/${id}`, {
+        id,
         name,
-        description,
         address,
+        description,
       });
       return data;
     } catch (err) {

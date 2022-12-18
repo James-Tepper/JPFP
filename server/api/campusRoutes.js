@@ -28,40 +28,38 @@ router.delete("/:id", async (req, res, next) => {
   try {
     const response = await Campus.destroy({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     });
     res.json(response);
-    
   } catch (err) {
     next(err);
   }
-  })
-  
+});
+
 //edit campus
-  router.put("/:id", async (req, res, next) => {
-    try {
-      const response = await Campus.update(req.body, {
-        where: {
-          id: req.params.id
-        }
-      });
-      res.json(response);
-    } catch (err) {
-      next(err);
-    }
-  });
-  
+router.put("/:id", async (req, res, next) => {
+  console.log("req",req.params)
+  try {
+    const response = await Campus.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.json(response);
+  } catch (err) {
+    next(err);
+  }
+});
+
 //add campus
-  router.post("/", async (req, res, next) => {
-    try {
-      const response = await Campus.create(req.body);
-      res.json(response);
-    } catch (err) {
-      next(err);
-    }
-  });
-  
-  
+router.post("/", async (req, res, next) => {
+  try {
+    const response = await Campus.create(req.body);
+    res.json(response);
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;

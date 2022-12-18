@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectedStudents } from "../features/studentsSlice";
 import { fetchSingleCampusAsync } from "../features/singleCampusSlice";
 import { selectSingleCampus } from "../features/singleCampusSlice";
@@ -13,14 +14,22 @@ const SingleCampus = () => {
 
   const students = useSelector(selectedStudents);
   const campus = useSelector(selectSingleCampus);
-  const { name, description, imageUrl, address } = campus;
-
+  
+  if (!campus) return null;
+  
+  const [campusName, setCampusName] = useState('');
+  const [campusDescription, setCampusDescription] = useState('');
+  const [campusAddress, setCampusAddress] = useState('');
+  
+  useEffect(() => {
+    setCampusName(campus.name);
+    setCampusDescription(campus.description);
+    setCampusAddress(campus.address);
+  }, [campus]);
+  
   const [shown, setShown] = useState(false);
 
-  const [campusName, setCampusName] = useState(name);
-  const [campusDescription, setDescription] = useState(description);
-  const [campusAddress, setAddress] = useState(address);
-
+  
   useEffect(() => {
     dispatch(fetchSingleCampusAsync(campusId));
   }, [dispatch]);
@@ -31,26 +40,30 @@ const SingleCampus = () => {
 
   const handleEdit = (e) => {
     e.preventDefault();
-    dispatch(
-      editSingleCampusAsync(
-        campusId,
-        campusName,
-        campusDescription,
-        campusAddress
-      )
-    );
+    dispatch(editSingleCampusAsync(
+      {campusId,
+      campusName,
+      campusDescription,
+      campusAddress}
+    ))
+    dispatch(fetchSingleCampusAsync(campusId));
+    toggleEditClick();
+  };
+
+  const handleCancelEdit = (e) => {
+    e.preventDefault();
+    dispatch(fetchSingleCampusAsync(campusId));
     toggleEditClick();
   };
 
   return (
     <>
-      <div id="container">
-        <h1>Single Campus</h1>
-        <div className="singleCampus">
-          <h2>Campus: {name}</h2>
-          <img src={imageUrl} />
-          <p>Address: {address}</p>
-          <p>About Us:{description}</p>
+      <div className="singleCampus">
+        <div className="campus">
+          <h2>Campus: {campusName}</h2>
+          <img src={campus.imageUrl} />
+          <p>About Us: {campusDescription}</p>
+          <p>Address: {campusAddress}</p>
           <p>
             Number of students:
             {
@@ -77,20 +90,44 @@ const SingleCampus = () => {
                 <input
                   type="text"
                   value={campusDescription}
-                  onChange={(e) => setDescription(e.target.value)}
+                  onChange={(e) => setCampusDescription(e.target.value)}
                 />
               </label>
               <label>
-                Edit Campus Address:
+                Edit Address:
                 <input
                   type="text"
                   value={campusAddress}
-                  onChange={(e) => setAddress(e.target.value)}
+                  onChange={(e) => setCampusAddress(e.target.value)}
                 />
               </label>
-              <button type="submit">Save</button>
+              <button type="submit">
+                Submit
+              </button>
+              <button type="button" onClick={handleCancelEdit}>
+                Cancel Changes
+              </button>
             </form>
           ) : null}
+        </div>
+        <div className="students">
+          <h2>Students</h2>
+          {students
+            .filter((student) => {
+              return student.campusId == campus.id;
+            })
+            .map((student) => {
+              return (
+                <div key={student.id}>
+                  <Link to={`/students/${student.id}`}>
+                    <h3>Student: {student.firstName}</h3>
+                  </Link>
+                  <img src={student.imageUrl} />
+                  <p>Email: {student.email}</p>
+                  <p>GPA: {student.gpa}</p>
+                </div>
+              );
+            })}
         </div>
       </div>
     </>

@@ -13,8 +13,8 @@ import {
   SingleStudent,
   // EditStudents,
   // EditCampuses,
-  AddCampus,
-  AddStudent,
+  // AddCampus,
+  // AddStudent,
 } from "./index.js";
 
 const App = () => {
@@ -34,10 +34,6 @@ const App = () => {
         <Route path="/campuses/:campusId" element={<SingleCampus />} />
         <Route path="/students" element={<AllStudents />} />
         <Route path="/students/:studentId" element={<SingleStudent />} />
-        <Route path="/students/add" element={<AddStudent />} />
-        
-        <Route path="/campuses/add" element={<AddCampus />} />
-
         <Route path="*">404: Not Found</Route>
       </Routes>
     </div>
