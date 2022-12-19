@@ -49,7 +49,7 @@ export const addCampusAsync = createAsyncThunk(
   "singleCampus",
   async ({ name, address, description, imageUrl }) => {
     try {
-      const { data } = await axios.post(`/api/campuses/add`, {
+      const { data } = await axios.post(`/campuses`, {
         name,
         address,
         description,

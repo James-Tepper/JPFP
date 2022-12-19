@@ -25,8 +25,9 @@ const AllStudents = () => {
     dispatch(fetchCampusesAsync());
   }, [dispatch]);
 
-  const handleRemove = (id) => {
-    dispatch(removeStudentAsync(id));
+  const handleRemove = (e) => {
+    e.preventDefault();
+    dispatch(removeStudentAsync(e.target.value));
   };
 
   return (
@@ -38,7 +39,7 @@ const AllStudents = () => {
           {students.length ? (
             students.map((student) => (
               // eslint-disable-next-line react/jsx-key
-              <div className="singleStudent" key={student.id}>
+              <div onSubmit={handleRemove} className="singleStudent" key={student.id}>
                 <Link to={`/students/${student.id}`}>
                   <h2>Name: {student.fullName}</h2>
                 </Link>
@@ -56,10 +57,7 @@ const AllStudents = () => {
                       : "N/A"}
                   </p>
                 </Link>
-                <button
-                  className="deleteButton"
-                  onClick={() => handleRemove(student.id)}
-                >
+                <button type="submit" value="Submit">
                   Delete Student
                 </button>
               </div>

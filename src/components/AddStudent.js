@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addStudentAsync } from "../features/singleStudentSlice.js";
 import { selectedCampuses } from "../features/campusesSlice.js";
 import { fetchStudentsAsync } from "../features/studentsSlice.js";
+import { addStudentAsync } from "../features/singleStudentSlice.js";
 
 const AddStudent = () => {
   const dispatch = useDispatch();

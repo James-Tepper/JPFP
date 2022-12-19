@@ -54,6 +54,7 @@ router.put("/:id", async (req, res, next) => {
 
 //add campus
 router.post("/", async (req, res, next) => {
+  console.log(req.body)
   try {
     const response = await Campus.create(req.body);
     res.json(response);
