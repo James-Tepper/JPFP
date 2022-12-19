@@ -16,4 +16,4 @@ root.render(
   </BrowserRouter>
 );
 
-// export default root
+export default root
